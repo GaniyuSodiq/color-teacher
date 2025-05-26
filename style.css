@@ -44,7 +44,7 @@ fieldset {
 }
 
 header{
-    height: 33vh;
+    height: 30vh;
     text-align: center;
     padding: 20px;
     border-radius: 5px;
@@ -56,7 +56,7 @@ header{
 #color-box{
     height: 70px;
     width: 150px;
-    /* background-color: red; */
+    border: 1px solid grey;
     margin: 10px auto;
 }
 
