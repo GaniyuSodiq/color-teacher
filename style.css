@@ -5,6 +5,11 @@
 }
 
 :root{
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #222;
     background-color: aliceblue;
@@ -12,7 +17,7 @@
 }
 
 .container{
-    margin: 10px 30vw;
+    margin: 0 30vw;
     border: 1px solid gray;
     height: 100vh;
     border-radius: 5px;
@@ -32,8 +37,8 @@ fieldset {
 
 @media only screen and (max-width : 800px) {
     .container{
-        margin: 0 10vw;
-        border: none;
+        border: 1px solid gray;
+        margin: 0 5vw;
     }
 }
 
