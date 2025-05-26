@@ -150,7 +150,8 @@ function displayArtBoard() {
         colorArray[count].audioNow.play()
         menuArtBoard.classList.add("art-board")
         artBoardCols.forEach((artBoardCol) => {
-            artBoardCol.addEventListener("pointerover", () => {
+            artBoardCol.addEventListener("touchstart", (e) => {
+                e.preventDefault()
                 artBoardCol.style.backgroundColor = colorArray[count].code
                 hoveredBox++;
                 // DISPLAY GOOD JOB WHEN HOVERED BOXES = 40
