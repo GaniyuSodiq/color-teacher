@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My Music Player</h1>
+    <div id="control">
+        <button id="play">PLAY</button>
+        <button id="pause">PAUSE</button>
+        <button id="stop">STOP</button>
+        <button id="forward">FORWARD</button>
+        <button id="backward">BACKWARD</button>
+        <!-- <button id="stop">STOP</button>
+        <button id="forward">FORWARD</button> -->
+    </div>
+
+    <label for="volume-ctr">
+        Volume Control
+    </label>
+    <input type="range" id="volume-ctr" min="0.0" max="1.0" step="0.1" value="0.1" />
+
+
+    <script>
+
+        // const audio = new Audio("Lazer-Beam-with-Voicemod-Text-to-Song (2).mp3")
+        // BRING IN THE AUDIO & CLICKABLE BTNs ON THE PAGE 
+        const audioContext = new AudioContext();
+        const audio = new Audio("olamide.mp4");
+
+        const playBtn = document.querySelector("#play");
+        const pauseBtn = document.querySelector("#pause");
+        const stopBtn = document.querySelector("#stop");
+        const volumectr = document.querySelector("#volume-ctr");
+        const forwardBtn = document.querySelector("#forward");
+        const backwardBtn = document.querySelector("#backward");
+
+        //MAKE THE SOURCE AND DESTINATION THEN CONNECT THEM
+        const source = audioContext.createMediaElementSource(audio);
+        const volume = audioContext.createGain();
+        volume.gain.value = 0.1;
+
+        source.connect(volume);
+        volume.connect(audioContext.destination)
+
+
+
+        // ADD EVENT LISTERNERS
+        playBtn.addEventListener("click", () => {
+            if (audioContext.state === "suspended"){
+                audioContext.resume();
+                console.log(audioContext)
+            }
+            audio.play()
+        })
+
+        pauseBtn.addEventListener("click", () => {
+            audio.pause()
+        })
+
+        stopBtn.addEventListener("click", () => {
+            audio.pause()
+            audio.currentTime = 0
+            // audio.playbackRate = 0
+        })
+        
+        volumectr.addEventListener("input", () => {
+            volume.gain.value = volumectr.value;
+            console.log(volumectr.value)
+        })
+
+        forwardBtn.addEventListener("click", () => {
+            // audio.currentTime = audio.currentTime + 30;
+            audio.currentTime += 30
+        })
+
+        backwardBtn.addEventListener("click", () => {
+            // audio.currentTime = audio.currentTime - 30;
+            audio.currentTime -= 30
+        })
+    </script>
+</body>
+
+</html>

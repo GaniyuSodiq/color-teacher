@@ -3,22 +3,32 @@ let colorArray = [
     {
         name: "RED",
         code: "RED",
-        audio: null,
-    },
-    {
-        name: "GREEN",
-        code: "GREEN",
-        audio: null,
+        audioThis: new Audio("audio/this-is-red.mp3"),
+        audioNow: new Audio("audio/now-paint-red.mp3"),    
     },
     {
         name: "YELLOW",
         code: "YELLOW",
-        audio: null,
+        audioThis: new Audio("audio/this-is-yellow.mp3"),
+        audioNow: new Audio("audio/now-paint-yellow.mp3"),  
     },
     {
         name: "BLUE",
         code: "BLUE",
-        audio: null,
+        audioThis: new Audio("audio/this-is-blue.mp3"),
+        audioNow: new Audio("audio/now-paint-blue.mp3"),  
+    },
+        {
+        name: "WHITE",
+        code: "WHITE",
+        audioThis: new Audio("audio/this-is-white.mp3"),
+        audioNow: new Audio("audio/now-paint-white.mp3"),  
+    },
+        {
+        name: "BLACK",
+        code: "BLACK",
+        audioThis: new Audio("audio/this-is-black.mp3"),
+        audioNow: new Audio("audio/now-paint-black.mp3"),  
     },
 ]
 
@@ -26,22 +36,32 @@ let primaryArray = [
     {
         name: "RED",
         code: "RED",
-        audio: null,
-    },
-    {
-        name: "GREEN",
-        code: "GREEN",
-        audio: null,
+        audioThis: new Audio("audio/this-is-red.mp3"),
+        audioNow: new Audio("audio/now-paint-red.mp3"),    
     },
     {
         name: "YELLOW",
         code: "YELLOW",
-        audio: null,
+        audioThis: new Audio("audio/this-is-yellow.mp3"),
+        audioNow: new Audio("audio/now-paint-yellow.mp3"),  
     },
     {
         name: "BLUE",
         code: "BLUE",
-        audio: null,
+        audioThis: new Audio("audio/this-is-blue.mp3"),
+        audioNow: new Audio("audio/now-paint-blue.mp3"),  
+    },
+        {
+        name: "WHITE",
+        code: "WHITE",
+        audioThis: new Audio("audio/this-is-white.mp3"),
+        audioNow: new Audio("audio/now-paint-white.mp3"),  
+    },
+        {
+        name: "BLACK",
+        code: "BLACK",
+        audioThis: new Audio("audio/this-is-black.mp3"),
+        audioNow: new Audio("audio/now-paint-black.mp3"),  
     },
 ]
 
@@ -50,24 +70,23 @@ let secondaryArray = [
     {
         name: "PURPLE",
         code: "PURPLE",
-        audio: null,
+        audioThis: new Audio("audio/this-is-purple.mp3"),
+        audioNow: new Audio("audio/now-paint-purple.mp3"),  
     },
     {
         name: "ORANGE",
         code: "ORANGE",
-        audio: null,
-    },
+        audioThis: new Audio("audio/this-is-orange.mp3"),
+        audioNow: new Audio("audio/now-paint-orange.mp3"),  
+    },   
     {
-        name: "VIOLET",
-        code: "VIOLET",
-        audio: null,
-    },
-    {
-        name: "GOLD",
-        code: "GOLD",
-        audio: null,
+        name: "GREEN",
+        code: "GREEN",
+        audioThis: new Audio("audio/this-is-green.mp3"),
+        audioNow: new Audio("audio/now-paint-green.mp3"),  
     },
 ]
+let goodJobAudio = new Audio("audio/good-job.mp3");
 let count = 0;
 let hoveredBox = 0;
 
@@ -113,16 +132,21 @@ primaryColor.addEventListener("change", () => {
 
 // FUNCTION TO DISPLAY COLOR ON THE HEADER
 function displayColor() {
+    if (AudioContext.state === "suspended"){
+        AudioContext.resume();
+    }
     colorText.textContent = `This is color ${colorArray[count].name}`
     // headerContainer.appendChild(colorText)
     colorBox.style.backgroundColor = colorArray[count].code
     // headerContainer.appendChild(colorBox)
+    colorArray[count].audioThis.play()
 }
 
 // FUNCTION TO DISPLAY COLOR ON THE ARTBOARD
 function displayArtBoard() {
     setTimeout(() => {
         menuH3.textContent = `Now paint the box below with the color ${colorArray[count].name}`
+        colorArray[count].audioNow.play()
         menuArtBoard.classList.add("art-board")
         artBoardCols.forEach((artBoardCol) => {
             artBoardCol.addEventListener("pointerover", () => {
@@ -130,12 +154,13 @@ function displayArtBoard() {
                 hoveredBox++;
                 // DISPLAY GOOD JOB WHEN HOVERED BOXES = 40
                 if (hoveredBox === 40) {
+                    goodJobAudio.play()
                     menuGoodJob.textContent = "👍🏽GOOD JOB👍🏽"
                     // nextColor()
                 }
             })
         })
-    }, 5000)
+    }, 15000)
 }
 
 // FUNCTION TO CLEAR THE BOARD FOR NEXT COLOR DISPLAY

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Class #4</title>
+    <style>
+        body{
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <button class="start">Set Up Audio Ctx</button>
+
+    <script>
+        // the previous video explained how we can use souce to add audio to our doc
+        // source is great bcs it comes with buffering out of the box ie browswer determines if enough audio is buffered before playing
+
+        // but there is another metod of buffering audio files - especially on the go
+        // and when you need them. Expecially in gaming etc - to load many audio sounds
+        // to make sure al audio are preloaded and ready to play when you need them
+
+        
+        // MAKE THE AUDIOCONTEXT AVAILABLE GLOBALLY
+        let audioContext;
+
+        const startCtxBtn = document.querySelector(".start")
+
+        startCtxBtn.addEventListener("click", ()=>{
+            audioContext = new AudioContext();
+            console.log("Audio Context started")
+        })
+    </script>
+</body>
+</html>
