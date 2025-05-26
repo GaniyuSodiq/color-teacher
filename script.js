@@ -195,8 +195,17 @@ function nextColor() {
     }
 }
 
+// STOP AUDIO FROM PLAYING
+function stopPlayingAudio(count) {
+    colorArray[count].audioThis.pause()
+    colorArray[count].audioNow.pause()    
+    colorArray[count].audioThis.currentTime = 0
+    colorArray[count].audioNow.currentTime = 0 
+}
+
 // CHANGE THE COLOR WITH BUTTONS BY CLEARING THE BOARD AND RERUN THE DISPLAYS 
 nextBtn.addEventListener("click", () => {
+    stopPlayingAudio(count)
     count++
     if (count >= colorArray.length) {
         menuH3.textContent = "THIS IS THE END. PRESS BACK TO TRY AGAIN"
@@ -204,11 +213,13 @@ nextBtn.addEventListener("click", () => {
     } else {
         clearArtBoard()
         displayColor()
+        stopPlayingAudio(count)
         displayArtBoard()
     }
 })
 
 backBtn.addEventListener("click", () => {
+    stopPlayingAudio(count)
     count--
     if (count < 0) {
         menuH3.textContent = "THIS IS THE END. PRESS NEXT TO TRY AGAIN"
