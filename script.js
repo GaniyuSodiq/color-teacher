@@ -146,6 +146,7 @@ function displayColor() {
 function displayArtBoard() {
     setTimeout(() => {
         menuH3.textContent = `Now paint the box below with the color ${colorArray[count].name}`
+        stopPlayingAudio()
         colorArray[count].audioNow.play()
         menuArtBoard.classList.add("art-board")
         artBoardCols.forEach((artBoardCol) => {
@@ -160,7 +161,7 @@ function displayArtBoard() {
                 }
             })
         })
-    }, 15000)
+    }, 18000)
 }
 
 // FUNCTION TO CLEAR THE BOARD FOR NEXT COLOR DISPLAY
@@ -196,7 +197,7 @@ function nextColor() {
 }
 
 // STOP AUDIO FROM PLAYING
-function stopPlayingAudio(count) {
+function stopPlayingAudio() {
     colorArray[count].audioThis.pause()
     colorArray[count].audioNow.pause()    
     colorArray[count].audioThis.currentTime = 0
@@ -205,7 +206,7 @@ function stopPlayingAudio(count) {
 
 // CHANGE THE COLOR WITH BUTTONS BY CLEARING THE BOARD AND RERUN THE DISPLAYS 
 nextBtn.addEventListener("click", () => {
-    stopPlayingAudio(count)
+    stopPlayingAudio()
     count++
     if (count >= colorArray.length) {
         menuH3.textContent = "THIS IS THE END. PRESS BACK TO TRY AGAIN"
@@ -213,13 +214,12 @@ nextBtn.addEventListener("click", () => {
     } else {
         clearArtBoard()
         displayColor()
-        stopPlayingAudio(count)
         displayArtBoard()
     }
 })
 
 backBtn.addEventListener("click", () => {
-    stopPlayingAudio(count)
+    stopPlayingAudio()
     count--
     if (count < 0) {
         menuH3.textContent = "THIS IS THE END. PRESS NEXT TO TRY AGAIN"
