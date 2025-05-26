@@ -140,3 +140,19 @@ footer{
     gap: 5px;
     padding-bottom: 5px;
 }
+
+.container a{
+    text-decoration: none;
+    text-align: center;
+    font-size: .7rem;
+    color: #222;
+    padding-bottom: 3px;
+}
+
+.container a:hover{
+    text-decoration: underline;
+}
+
+.container a:visited{
+    color:#3b3a3a
+}
