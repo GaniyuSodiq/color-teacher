@@ -123,8 +123,10 @@ const primaryColor = document.querySelector("#primary-color")
 const secondaryColor = document.querySelector("#secondary-color")
 
 soundBtn.addEventListener("click", () => {
-
-
+    if (AudioContext.state === "suspended") {
+        AudioContext.resume();
+    }
+    console.log(AudioContext)
 })
 
 displayColor()
@@ -133,11 +135,8 @@ displayArtBoard()
 
 // FUNCTION TO DISPLAY COLOR ON THE HEADER
 function displayColor() {
-    if (AudioContext.state === "suspended") {
-        AudioContext.resume();
-    }
 
-        backBtn.disabled = true
+    backBtn.disabled = true
     nextBtn.disabled = true
     colorText.textContent = `This is color ${colorArray[count].name}`
 
