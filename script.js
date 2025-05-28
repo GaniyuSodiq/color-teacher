@@ -143,9 +143,9 @@ function displayColor() {
         AudioContext.resume();
     }
     colorText.textContent = `This is color ${colorArray[count].name}`
-    // headerContainer.appendChild(colorText)
+    
     colorBox.style.backgroundColor = colorArray[count].code
-    // headerContainer.appendChild(colorBox)
+    
     colorArray[count].audioThis.play()
 }
 
@@ -153,7 +153,7 @@ function displayColor() {
 function displayArtBoard() {
     setTimeout(() => {
         menuH3.textContent = `Now paint the box below with the color ${colorArray[count].name}`
-        stopPlayingAudio()
+        
         colorArray[count].audioNow.play()
         menuArtBoard.classList.add("art-board")
         artBoardCols.forEach((artBoardCol) => {
@@ -165,7 +165,8 @@ function displayArtBoard() {
                 if (hoveredBox === 40) {
                     goodJobAudio.play()
                     menuGoodJob.textContent = "👍🏽GOOD JOB👍🏽"
-                    // nextColor()
+                    backBtn.disabled = false
+                    nextBtn.disabled = false
                 }
             })
         })
@@ -204,23 +205,24 @@ function nextColor() {
     }
 }
 
-// STOP AUDIO FROM PLAYING
-function stopPlayingAudio() {
-    colorArray[count].audioThis.pause()
-    colorArray[count].audioNow.pause()    
-    colorArray[count].audioThis.currentTime = 0
-    colorArray[count].audioNow.currentTime = 0 
-}
+// STOP AUDIO FROM PLAYING - didnt work for me
+// function stopPlayingAudio() {
+//     colorArray[count].audioThis.pause()
+//     colorArray[count].audioNow.pause()    
+//     colorArray[count].audioThis.currentTime = 0
+//     colorArray[count].audioNow.currentTime = 0 
+// }
 
 // CHANGE THE COLOR WITH BUTTONS BY CLEARING THE BOARD AND RERUN THE DISPLAYS 
 nextBtn.addEventListener("click", () => {
     // stopPlayingAudio()
-    nextBtn.disabled = true
     count++
     if (count >= colorArray.length) {
         menuH3.textContent = "THIS IS THE END. PRESS BACK TO TRY AGAIN"
         count--;
     } else {
+        nextBtn.disabled = true
+        backBtn.disabled = true
         clearArtBoard()
         displayColor()
         displayArtBoard()
@@ -234,6 +236,8 @@ backBtn.addEventListener("click", () => {
         menuH3.textContent = "THIS IS THE END. PRESS NEXT TO TRY AGAIN"
         count++;
     } else {
+        backBtn.disabled = true
+        nextBtn.disabled = true
         clearArtBoard()
         displayColor()
         displayArtBoard()
