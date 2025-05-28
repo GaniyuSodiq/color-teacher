@@ -86,6 +86,7 @@ let secondaryArray = [
         audioNow: new Audio("audio/now-paint-green.mp3"),  
     },
 ]
+
 let goodJobAudio = new Audio("audio/good-job.mp3");
 let count = 0;
 let hoveredBox = 0;
@@ -97,8 +98,10 @@ let hoveredBox = 0;
 // Get the color-text and color-box from the HTML page
 const colorText = document.querySelector("#color-text")
 const colorBox = document.querySelector("#color-box")
+
 // get the header continer to append the color text and box
 const headerContainer = document.querySelector("header")
+
 // making the main section
 const mainSection = document.querySelector("#main")
 const menuH3 = document.querySelector("#main-h3")
@@ -106,6 +109,10 @@ const menuArtBoard = document.querySelector("#art-board")
 const menuGoodJob = document.querySelector("#main-h4")
 let artBoardCols = document.querySelectorAll("div.col")
 const mainCover = document.querySelector("#main-cover")
+
+// BOTTONS
+const nextBtn = document.querySelector("#nextBtn");
+const backBtn = document.querySelector("#backBtn");
 
 // PICK THE BUTTONS ON COLOR TYPES
 const primaryColor = document.querySelector("#primary-color")
@@ -207,7 +214,8 @@ function stopPlayingAudio() {
 
 // CHANGE THE COLOR WITH BUTTONS BY CLEARING THE BOARD AND RERUN THE DISPLAYS 
 nextBtn.addEventListener("click", () => {
-    stopPlayingAudio()
+    // stopPlayingAudio()
+    nextBtn.disabled = true
     count++
     if (count >= colorArray.length) {
         menuH3.textContent = "THIS IS THE END. PRESS BACK TO TRY AGAIN"
@@ -220,7 +228,7 @@ nextBtn.addEventListener("click", () => {
 })
 
 backBtn.addEventListener("click", () => {
-    stopPlayingAudio()
+    // stopPlayingAudio()
     count--
     if (count < 0) {
         menuH3.textContent = "THIS IS THE END. PRESS NEXT TO TRY AGAIN"
