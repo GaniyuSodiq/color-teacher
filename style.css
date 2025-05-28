@@ -16,6 +16,10 @@
 
 }
 
+#soundBtn{
+    text-align: center;
+}
+
 .container{
     margin: 0 30vw;
     border: 1px solid gray;

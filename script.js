@@ -4,31 +4,31 @@ let colorArray = [
         name: "RED",
         code: "RED",
         audioThis: new Audio("audio/this-is-red.mp3"),
-        audioNow: new Audio("audio/now-paint-red.mp3"),    
+        audioNow: new Audio("audio/now-paint-red.mp3"),
     },
     {
         name: "YELLOW",
         code: "YELLOW",
         audioThis: new Audio("audio/this-is-yellow.mp3"),
-        audioNow: new Audio("audio/now-paint-yellow.mp3"),  
+        audioNow: new Audio("audio/now-paint-yellow.mp3"),
     },
     {
         name: "BLUE",
         code: "BLUE",
         audioThis: new Audio("audio/this-is-blue.mp3"),
-        audioNow: new Audio("audio/now-paint-blue.mp3"),  
+        audioNow: new Audio("audio/now-paint-blue.mp3"),
     },
-        {
+    {
         name: "WHITE",
         code: "WHITE",
         audioThis: new Audio("audio/this-is-white.mp3"),
-        audioNow: new Audio("audio/now-paint-white.mp3"),  
+        audioNow: new Audio("audio/now-paint-white.mp3"),
     },
-        {
+    {
         name: "BLACK",
         code: "BLACK",
         audioThis: new Audio("audio/this-is-black.mp3"),
-        audioNow: new Audio("audio/now-paint-black.mp3"),  
+        audioNow: new Audio("audio/now-paint-black.mp3"),
     },
 ]
 
@@ -37,31 +37,31 @@ let primaryArray = [
         name: "RED",
         code: "RED",
         audioThis: new Audio("audio/this-is-red.mp3"),
-        audioNow: new Audio("audio/now-paint-red.mp3"),    
+        audioNow: new Audio("audio/now-paint-red.mp3"),
     },
     {
         name: "YELLOW",
         code: "YELLOW",
         audioThis: new Audio("audio/this-is-yellow.mp3"),
-        audioNow: new Audio("audio/now-paint-yellow.mp3"),  
+        audioNow: new Audio("audio/now-paint-yellow.mp3"),
     },
     {
         name: "BLUE",
         code: "BLUE",
         audioThis: new Audio("audio/this-is-blue.mp3"),
-        audioNow: new Audio("audio/now-paint-blue.mp3"),  
+        audioNow: new Audio("audio/now-paint-blue.mp3"),
     },
-        {
+    {
         name: "WHITE",
         code: "WHITE",
         audioThis: new Audio("audio/this-is-white.mp3"),
-        audioNow: new Audio("audio/now-paint-white.mp3"),  
+        audioNow: new Audio("audio/now-paint-white.mp3"),
     },
-        {
+    {
         name: "BLACK",
         code: "BLACK",
         audioThis: new Audio("audio/this-is-black.mp3"),
-        audioNow: new Audio("audio/now-paint-black.mp3"),  
+        audioNow: new Audio("audio/now-paint-black.mp3"),
     },
 ]
 
@@ -71,19 +71,19 @@ let secondaryArray = [
         name: "PURPLE",
         code: "PURPLE",
         audioThis: new Audio("audio/this-is-purple.mp3"),
-        audioNow: new Audio("audio/now-paint-purple.mp3"),  
+        audioNow: new Audio("audio/now-paint-purple.mp3"),
     },
     {
         name: "ORANGE",
         code: "ORANGE",
         audioThis: new Audio("audio/this-is-orange.mp3"),
-        audioNow: new Audio("audio/now-paint-orange.mp3"),  
-    },   
+        audioNow: new Audio("audio/now-paint-orange.mp3"),
+    },
     {
         name: "GREEN",
         code: "GREEN",
         audioThis: new Audio("audio/this-is-green.mp3"),
-        audioNow: new Audio("audio/now-paint-green.mp3"),  
+        audioNow: new Audio("audio/now-paint-green.mp3"),
     },
 ]
 
@@ -113,39 +113,36 @@ const mainCover = document.querySelector("#main-cover")
 // BOTTONS
 const nextBtn = document.querySelector("#nextBtn");
 const backBtn = document.querySelector("#backBtn");
+    // backBtn.disabled = true
+    // nextBtn.disabled = true
+
+const soundBtn = document.querySelector("#soundBtn");
 
 // PICK THE BUTTONS ON COLOR TYPES
 const primaryColor = document.querySelector("#primary-color")
 const secondaryColor = document.querySelector("#secondary-color")
 
-// EMPTY THE CURRENT COLOR THEN FILL WITH THE SELECT COLORS OPON CLICK
-secondaryColor.addEventListener("change", () => {
-    colorArray = [];
-    colorArray = secondaryArray;
-    count = 0;
-    clearArtBoard()
-    displayColor()
-    displayArtBoard()
+soundBtn.addEventListener("click", () => {
+
+
 })
 
-primaryColor.addEventListener("change", () => {
-    colorArray = [];
-    colorArray = primaryArray;
-    count = 0;
-    clearArtBoard()
-    displayColor()
-    displayArtBoard()
-})
+displayColor()
+displayArtBoard()
+
 
 // FUNCTION TO DISPLAY COLOR ON THE HEADER
 function displayColor() {
-    if (AudioContext.state === "suspended"){
+    if (AudioContext.state === "suspended") {
         AudioContext.resume();
     }
+
+        backBtn.disabled = true
+    nextBtn.disabled = true
     colorText.textContent = `This is color ${colorArray[count].name}`
-    
+
     colorBox.style.backgroundColor = colorArray[count].code
-    
+
     colorArray[count].audioThis.play()
 }
 
@@ -153,7 +150,7 @@ function displayColor() {
 function displayArtBoard() {
     setTimeout(() => {
         menuH3.textContent = `Now paint the box below with the color ${colorArray[count].name}`
-        
+
         colorArray[count].audioNow.play()
         menuArtBoard.classList.add("art-board")
         artBoardCols.forEach((artBoardCol) => {
@@ -218,7 +215,7 @@ nextBtn.addEventListener("click", () => {
     // stopPlayingAudio()
     count++
     if (count >= colorArray.length) {
-        menuH3.textContent = "THIS IS THE END. PRESS BACK TO TRY AGAIN"
+        menuH3.textContent = "THIS IS THE END. PRESS 👈🏽 TO TRY AGAIN"
         count--;
     } else {
         nextBtn.disabled = true
@@ -233,7 +230,7 @@ backBtn.addEventListener("click", () => {
     // stopPlayingAudio()
     count--
     if (count < 0) {
-        menuH3.textContent = "THIS IS THE END. PRESS NEXT TO TRY AGAIN"
+        menuH3.textContent = "THIS IS THE END. PRESS 👉🏽 TO TRY AGAIN"
         count++;
     } else {
         backBtn.disabled = true
@@ -244,8 +241,26 @@ backBtn.addEventListener("click", () => {
     }
 })
 
-displayColor()
-displayArtBoard()
+// EMPTY THE CURRENT COLOR THEN FILL WITH THE SELECT COLORS OPON CLICK
+secondaryColor.addEventListener("change", () => {
+    colorArray = [];
+    colorArray = secondaryArray;
+    count = 0;
+    clearArtBoard()
+    displayColor()
+    displayArtBoard()
+})
+
+primaryColor.addEventListener("change", () => {
+    colorArray = [];
+    colorArray = primaryArray;
+    count = 0;
+    clearArtBoard()
+    displayColor()
+    displayArtBoard()
+})
+
+
 // mainCoverToggle()
 
 // DIDNT WORK BCS YOU CAN ONLY SELECT MULTIPLE ELEMENT TOGETHER USING document.querySelectorAll()
