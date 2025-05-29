@@ -139,8 +139,8 @@ const mainCover = document.querySelector("#main-cover")
 // BOTTONS
 const nextBtn = document.querySelector("#nextBtn");
 const backBtn = document.querySelector("#backBtn");
-// backBtn.disabled = true
-// nextBtn.disabled = true
+backBtn.disabled = true
+nextBtn.disabled = true
 
 const soundBtn = document.querySelector("#soundBtn");
 
