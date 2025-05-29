@@ -102,11 +102,11 @@
         // })
 
         playSampleBtn.addEventListener("click", () => {
-            playSample(samplesThis[count], 0)
+            playSample(samplesThis[count])
         })
 
         playNextBtn.addEventListener("click", () => {
-            playSample(samplesNow[count], 0)
+            playSample(samplesNow[count])
         })
 
 
@@ -128,13 +128,13 @@
             return audioBuffer;
         }
 
-        function playSample(audioBuffer, time) {
+        function playSample(audioBuffer) {
             const sampleSource = audioContext.createBufferSource();
             sampleSource.buffer = audioBuffer;
             const gainNode = audioContext.createGain();
             gainNode.gain.value = volume;
             sampleSource.connect(gainNode).connect(audioContext.destination);
-            sampleSource.start(time);
+            sampleSource.start(0);
             return sampleSource
         }
 
