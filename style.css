@@ -16,8 +16,10 @@
 
 }
 
-#soundBtn{
-    text-align: center;
+.controlBox{
+    display: grid;
+align-items: center;
+justify-items: center;    
 }
 
 .container{

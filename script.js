@@ -143,6 +143,7 @@ backBtn.disabled = true
 nextBtn.disabled = true
 
 const soundBtn = document.querySelector("#soundBtn");
+const beginNow = document.querySelector("#begin")
 
 // PICK THE BUTTONS ON COLOR TYPES
 const primaryColor = document.querySelector("#primary-color")
@@ -239,25 +240,21 @@ soundBtn.addEventListener("click", () => {
     console.log("Audio Context started")
     // START GETTING THE AUDIO NOW AND PUT THEN IN samples[]
     setupSamples(samplePathsThis).then((response) => {
-        samplesThis = response; // SOLUTION add the contect and destination to this
+        samplesThis = response;
         console.log(samplesThis)
     })
     setupSamples(samplePathsNow).then((response) => {
-        samplesNow = response; // SOLUTION add the contect and destination to this
+        samplesNow = response; 
         console.log(samplesNow)
     })
-
-     // displayColor() Uncaught TypeError: Cannot read properties of undefined (reading '0')
-    // displayArtBoard() 
 })
 
-// playSampleBtn.addEventListener("click", () => {
-//     playSample(samplesThis[count])
-// })
 
-// playNextBtn.addEventListener("click", () => {
-//     playSample(samplesNow[count])
-// })
+
+beginNow.addEventListener("click", ()=>{
+         displayColor()
+    displayArtBoard() 
+})
 
 
 async function setupSamples(paths) {
