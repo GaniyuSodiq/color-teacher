@@ -99,7 +99,7 @@ header {
 }
 
 main {
-    height: 50vh;
+    height: 30vh;
     display: grid;
     justify-items: center;
     gap: 1px;
