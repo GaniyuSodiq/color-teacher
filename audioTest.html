@@ -33,17 +33,40 @@
         const playSampleBtn = document.querySelector("#playSound")
         const playNextBtn = document.querySelector("#playNextSound")
 
+        // const samplePaths = [
+        //     "audio/this-is-red.mp3",
+        //     "audio/now-paint-red.mp3",
+        //     "audio/this-is-yellow.mp3",
+        //     "audio/now-paint-yellow.mp3",
+        //     "audio/this-is-blue.mp3",
+        //     "audio/now-paint-blue.mp3",
+        //     "audio/this-is-white.mp3",
+        //     "audio/now-paint-white.mp3",
+        //     "audio/this-is-black.mp3",
+        //     "audio/now-paint-black.mp3",
+        // ]
+
         const samplePaths = [
-            "audio/this-is-red.mp3",
-            "audio/now-paint-red.mp3",
-            "audio/this-is-yellow.mp3",
-            "audio/now-paint-yellow.mp3",
-            "audio/this-is-blue.mp3",
-            "audio/now-paint-blue.mp3",
-            "audio/this-is-white.mp3",
-            "audio/now-paint-white.mp3",
-            "audio/this-is-black.mp3",
-            "audio/now-paint-black.mp3",
+                {
+                    this : "audio/this-is-red.mp3",
+                    now : "audio/now-paint-red.mp3",
+                },
+                {
+                    this : "audio/this-is-yellow.mp3",
+                    now : "audio/now-paint-yellow.mp3",
+                },
+                {
+                    this : "audio/this-is-blue.mp3",
+                    now : "audio/now-paint-blue.mp3",
+                },
+                {
+                    this : "audio/this-is-white.mp3",
+                    now : "audio/now-paint-white.mp3",
+                },
+                {
+                    this : "audio/this-is-black.mp3",
+                    now : "audio/now-paint-black.mp3",
+                },
         ]
 
         // setupSamplesBtn.addEventListener("click", () => {
