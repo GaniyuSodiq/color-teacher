@@ -157,6 +157,9 @@ const beginNow = document.querySelector("#begin")
 const primaryColor = document.querySelector("#primary-color")
 const secondaryColor = document.querySelector("#secondary-color")
 
+soundPara = document.querySelector("#soundPara")
+beginPara = document.querySelector("#beginPara")
+
 // FUNCTION TO CLEAR THE BOARD FOR NEXT COLOR DISPLAY
 function clearArtBoard() {
     artBoardCols.forEach((artBoardCol) => {
@@ -204,23 +207,23 @@ backBtn.addEventListener("click", () => {
 })
 
 // EMPTY THE CURRENT COLOR THEN FILL WITH THE SELECT COLORS OPON CLICK
-secondaryColor.addEventListener("change", () => {
-    colorArray = [];
-    colorArray = secondaryArray;
-    count = 0;
-    clearArtBoard()
-    displayColor()
-    displayArtBoard()
-})
+// secondaryColor.addEventListener("change", () => {
+//     colorArray = [];
+//     colorArray = secondaryArray;
+//     count = 0;
+//     clearArtBoard()
+//     displayColor()
+//     displayArtBoard()
+// })
 
-primaryColor.addEventListener("change", () => {
-    colorArray = [];
-    colorArray = primaryArray;
-    count = 0;
-    clearArtBoard()
-    displayColor()
-    displayArtBoard()
-})
+// primaryColor.addEventListener("change", () => {
+//     colorArray = [];
+//     colorArray = primaryArray;
+//     count = 0;
+//     clearArtBoard()
+//     displayColor()
+//     displayArtBoard()
+// })
 
 // 🔉🔉🔉AUDIO ENGINE🔉🔉🔉
 
@@ -243,6 +246,7 @@ soundBtn.addEventListener("click", () => {
         samplesNow = response; 
         console.log(samplesNow)
     })
+    soundPara.textContent = ""
 })
 
 
@@ -250,6 +254,7 @@ soundBtn.addEventListener("click", () => {
 beginNow.addEventListener("click", ()=>{
          displayColor()
     displayArtBoard() 
+    beginPara.textContent = ""
 })
 
 
