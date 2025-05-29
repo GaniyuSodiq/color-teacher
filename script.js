@@ -3,89 +3,91 @@ let colorArray = [
     {
         name: "RED",
         code: "RED",
-        audioThis: new Audio("audio/this-is-red.mp3"),
-        audioNow: new Audio("audio/now-paint-red.mp3"),
     },
     {
         name: "YELLOW",
         code: "YELLOW",
-        audioThis: new Audio("audio/this-is-yellow.mp3"),
-        audioNow: new Audio("audio/now-paint-yellow.mp3"),
     },
     {
         name: "BLUE",
         code: "BLUE",
-        audioThis: new Audio("audio/this-is-blue.mp3"),
-        audioNow: new Audio("audio/now-paint-blue.mp3"),
     },
     {
         name: "WHITE",
         code: "WHITE",
-        audioThis: new Audio("audio/this-is-white.mp3"),
-        audioNow: new Audio("audio/now-paint-white.mp3"),
     },
     {
         name: "BLACK",
         code: "BLACK",
-        audioThis: new Audio("audio/this-is-black.mp3"),
-        audioNow: new Audio("audio/now-paint-black.mp3"),
-    },
-]
-
-let primaryArray = [
-    {
-        name: "RED",
-        code: "RED",
-        audioThis: new Audio("audio/this-is-red.mp3"),
-        audioNow: new Audio("audio/now-paint-red.mp3"),
-    },
-    {
-        name: "YELLOW",
-        code: "YELLOW",
-        audioThis: new Audio("audio/this-is-yellow.mp3"),
-        audioNow: new Audio("audio/now-paint-yellow.mp3"),
-    },
-    {
-        name: "BLUE",
-        code: "BLUE",
-        audioThis: new Audio("audio/this-is-blue.mp3"),
-        audioNow: new Audio("audio/now-paint-blue.mp3"),
-    },
-    {
-        name: "WHITE",
-        code: "WHITE",
-        audioThis: new Audio("audio/this-is-white.mp3"),
-        audioNow: new Audio("audio/now-paint-white.mp3"),
-    },
-    {
-        name: "BLACK",
-        code: "BLACK",
-        audioThis: new Audio("audio/this-is-black.mp3"),
-        audioNow: new Audio("audio/now-paint-black.mp3"),
-    },
-]
-
-// CREATED THE SECONDARY COLORS
-let secondaryArray = [
-    {
-        name: "PURPLE",
-        code: "PURPLE",
-        audioThis: new Audio("audio/this-is-purple.mp3"),
-        audioNow: new Audio("audio/now-paint-purple.mp3"),
-    },
-    {
-        name: "ORANGE",
-        code: "ORANGE",
-        audioThis: new Audio("audio/this-is-orange.mp3"),
-        audioNow: new Audio("audio/now-paint-orange.mp3"),
     },
     {
         name: "GREEN",
         code: "GREEN",
-        audioThis: new Audio("audio/this-is-green.mp3"),
-        audioNow: new Audio("audio/now-paint-green.mp3"),
+    },
+    {
+        name: "ORANGE",
+        code: "ORANGE",
+    },
+    {
+        name: "PURPLE",
+        code: "PURPLE",
     },
 ]
+
+// let primaryArray = [
+//     {
+//         name: "RED",
+//         code: "RED",
+//         audioThis: new Audio("audio/this-is-red.mp3"),
+//         audioNow: new Audio("audio/now-paint-red.mp3"),
+//     },
+//     {
+//         name: "YELLOW",
+//         code: "YELLOW",
+//         audioThis: new Audio("audio/this-is-yellow.mp3"),
+//         audioNow: new Audio("audio/now-paint-yellow.mp3"),
+//     },
+//     {
+//         name: "BLUE",
+//         code: "BLUE",
+//         audioThis: new Audio("audio/this-is-blue.mp3"),
+//         audioNow: new Audio("audio/now-paint-blue.mp3"),
+//     },
+//     {
+//         name: "WHITE",
+//         code: "WHITE",
+//         audioThis: new Audio("audio/this-is-white.mp3"),
+//         audioNow: new Audio("audio/now-paint-white.mp3"),
+//     },
+//     {
+//         name: "BLACK",
+//         code: "BLACK",
+//         audioThis: new Audio("audio/this-is-black.mp3"),
+//         audioNow: new Audio("audio/now-paint-black.mp3"),
+//     },
+// ]
+
+// CREATED THE SECONDARY COLORS
+// let secondaryArray = [
+//     {
+//         name: "PURPLE",
+//         code: "PURPLE",
+//         audioThis: new Audio("audio/this-is-purple.mp3"),
+//         audioNow: new Audio("audio/now-paint-purple.mp3"),
+//     },
+//     {
+//         name: "ORANGE",
+//         code: "ORANGE",
+//         audioThis: new Audio("audio/this-is-orange.mp3"),
+//         audioNow: new Audio("audio/now-paint-orange.mp3"),
+//     },
+//     {
+//         name: "GREEN",
+//         code: "GREEN",
+//         audioThis: new Audio("audio/this-is-green.mp3"),
+//         audioNow: new Audio("audio/now-paint-green.mp3"),
+//     },
+// ]
 
 let goodJobAudio = new Audio("audio/good-job.mp3");
 let count = 0;
@@ -107,6 +109,9 @@ const samplePathsThis = [
     "audio/this-is-blue.mp3",
     "audio/this-is-white.mp3",
     "audio/this-is-black.mp3",
+    "audio/this-is-green.mp3",
+    "audio/this-is-orange.mp3",
+    "audio/this-is-purple.mp3",
 ]
 const samplePathsNow = [
     "audio/now-paint-red.mp3",
@@ -114,6 +119,9 @@ const samplePathsNow = [
     "audio/now-paint-blue.mp3",
     "audio/now-paint-white.mp3",
     "audio/now-paint-black.mp3",
+    "audio/now-paint-green.mp3",
+    "audio/now-paint-orange.mp3",
+    "audio/now-paint-purple.mp3",
 ]
 // 🔉🔉🔉AUDIO ENGINE🔉🔉🔉
 
@@ -162,18 +170,6 @@ function clearArtBoard() {
 
 
 // JUST NEXT AUTOMATICALLY
-
-function nextColor() {
-    count++
-    if (count >= colorArray.length) {
-        menuH3.textContent = "THIS IS THE END. PRESS BACK TO TRY AGAIN"
-        count--;
-    } else {
-        clearArtBoard()
-        displayColor()
-        displayArtBoard()
-    }
-}
 
 
 // CHANGE THE COLOR WITH BUTTONS BY CLEARING THE BOARD AND RERUN THE DISPLAYS 
