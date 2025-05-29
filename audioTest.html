@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Test For Color Teacher</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="allowSetup">Allow Ctx Audio on Page</button>
+    <!-- <button class="setup-samples">Setup Audio samples on Page</button> -->
+    <!-- // lets see how to play audio in a single array
+    // then we see how to play audios is a single array
+    // or we split the audios into two arrays -->
+    <button id="playSound">Play the 1st sound in the array</button>
+    <button id="playNextSound">Play the next sound in the array</button>
+
+    <script>
+        let audioContext;
+        let samples;
+        let count = 0;
+        let volume = 2
+        const startCtxBtn = document.querySelector("#allowSetup")
+        const playSampleBtn = document.querySelector("#playSound")
+        const playNextBtn = document.querySelector("#playNextSound")
+
+        const samplePaths = [
+            "audio/this-is-red.mp3",
+            "audio/now-paint-red.mp3",
+            "audio/this-is-yellow.mp3",
+            "audio/now-paint-yellow.mp3",
+            "audio/this-is-blue.mp3",
+            "audio/now-paint-blue.mp3",
+            "audio/this-is-white.mp3",
+            "audio/now-paint-white.mp3",
+            "audio/this-is-black.mp3",
+            "audio/now-paint-black.mp3",
+        ]
+
+        // setupSamplesBtn.addEventListener("click", () => {
+        //     setupSamples(samplePaths).then((response) => {
+        //         samples = response; // SOLUTION add the contect and destination to this
+        //         console.log(samples)
+        //         playSampleBtn.addEventListener("click", () => {
+        //             const playing = playSample(samples[count], 0, 0.1)
+        //             console.log(playing)
+        //             // setTimeout(()=>{
+        //             //     playing.stop()
+        //             // }, 3000)
+        //             // })
+        //         })
+        //     })
+        // })
+
+        startCtxBtn.addEventListener("click", () => {
+            audioContext = new AudioContext()
+            console.log("Audio Context started")
+            // START GETTING THE AUDIO NOW AND PUT THEN IN samples[]
+            setupSamples(samplePaths).then((response) => {
+                samples = response; // SOLUTION add the contect and destination to this
+                console.log(samples)
+            })
+        })
+
+        // playSampleBtn.addEventListener("click", () => {
+        //     const sampleSource = audioContext.createBufferSource();
+        //     sampleSource.buffer = samples[count];
+        //     const gainNode = audioContext.createGain();
+        //     gainNode.gain.value = volume;
+        //     sampleSource.connect(gainNode).connect(audioContext.destination);
+        //     sampleSource.start(0);
+        // })
+
+        playSampleBtn.addEventListener("click", () => {
+            playSample(samples[count], 0)
+        })
+
+        playNextBtn.addEventListener("click", ()=>{
+            count ++
+            playSample(samples[count], 0)
+        })
+
+
+        async function setupSamples(paths) {
+            console.log("Getting the audios from server into buffer");
+            const audioBuffers = [];
+            for (const path of paths) {
+                const sample = await getFile(path);
+                audioBuffers.push(sample);
+            }
+            console.log("All audios gotten into buffer")
+            return audioBuffers;
+        }
+
+        async function getFile(filePath) {
+            const response = await fetch(filePath);
+            const arrayBuffer = await response.arrayBuffer();
+            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+            return audioBuffer;
+        }
+
+        function playSample(audioBuffer, time) {
+            const sampleSource = audioContext.createBufferSource();
+            sampleSource.buffer = audioBuffer;
+            const gainNode = audioContext.createGain();
+            gainNode.gain.value = volume;
+            sampleSource.connect(gainNode).connect(audioContext.destination);
+            sampleSource.start(time);
+            return sampleSource
+        }
+
+
+        // playNextBtn.addEventListener("click", () => {
+        //     const playing = playSample(samples[count], 0, 0.0)
+        //     count++
+        //     playSample(samples[count], 0, 0.7)
+        //     console.log(playing)
+        // })
+
+        // stopPlayBtn.addEventListener("click", () => {
+        //     stopSample(samples[count])
+        //     console.log(playing)
+        // })
+
+
+        // function stopSample(audioBuffer) {
+        //     const sampleSource = audioContext.createBufferSource();
+        //     sampleSource.buffer = audioBuffer;
+        //     const gainNode = audioContext.createGain();
+        //     sampleSource.connect(gainNode).connect(audioContext.destination);
+        //     sampleSource.stop();
+        //     return sampleSource
+        // }
+    </script>
+</body>
+
+</html>
