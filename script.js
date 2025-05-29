@@ -246,8 +246,9 @@ soundBtn.addEventListener("click", () => {
         samplesNow = response; // SOLUTION add the contect and destination to this
         console.log(samplesNow)
     })
-    // displayColor() Uncaught TypeError: Cannot read properties of undefined (reading '0')
-    // displayArtBoard()
+
+     // displayColor() Uncaught TypeError: Cannot read properties of undefined (reading '0')
+    // displayArtBoard() 
 })
 
 // playSampleBtn.addEventListener("click", () => {
