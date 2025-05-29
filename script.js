@@ -91,6 +91,32 @@ let goodJobAudio = new Audio("audio/good-job.mp3");
 let count = 0;
 let hoveredBox = 0;
 
+// 🔉🔉🔉AUDIO ENGINE🔉🔉🔉
+
+let audioContext;
+let samplesThis;
+let samplesNow;
+let volume = 2
+const startCtxBtn = document.querySelector("#allowSetup")
+const playSampleBtn = document.querySelector("#playSound")
+const playNextBtn = document.querySelector("#playNextSound")
+
+const samplePathsThis = [
+    "audio/this-is-red.mp3",
+    "audio/this-is-yellow.mp3",
+    "audio/this-is-blue.mp3",
+    "audio/this-is-white.mp3",
+    "audio/this-is-black.mp3",
+]
+const samplePathsNow = [
+    "audio/now-paint-red.mp3",
+    "audio/now-paint-yellow.mp3",
+    "audio/now-paint-blue.mp3",
+    "audio/now-paint-white.mp3",
+    "audio/now-paint-black.mp3",
+]
+// 🔉🔉🔉AUDIO ENGINE🔉🔉🔉
+
 // logic to pick random color from the array
 // let randomColorSelection = colorArray[Math.floor(Math.random()*colorArray.length)].name;
 // console.log(randomColorSelection);
@@ -113,61 +139,14 @@ const mainCover = document.querySelector("#main-cover")
 // BOTTONS
 const nextBtn = document.querySelector("#nextBtn");
 const backBtn = document.querySelector("#backBtn");
-    // backBtn.disabled = true
-    // nextBtn.disabled = true
+// backBtn.disabled = true
+// nextBtn.disabled = true
 
 const soundBtn = document.querySelector("#soundBtn");
 
 // PICK THE BUTTONS ON COLOR TYPES
 const primaryColor = document.querySelector("#primary-color")
 const secondaryColor = document.querySelector("#secondary-color")
-
-soundBtn.addEventListener("click", () => {
-    if (AudioContext.state === "suspended") {
-        AudioContext.resume();
-    }
-    console.log(AudioContext)
-})
-
-displayColor()
-displayArtBoard()
-
-
-// FUNCTION TO DISPLAY COLOR ON THE HEADER
-function displayColor() {
-
-    backBtn.disabled = true
-    nextBtn.disabled = true
-    colorText.textContent = `This is color ${colorArray[count].name}`
-
-    colorBox.style.backgroundColor = colorArray[count].code
-
-    colorArray[count].audioThis.play()
-}
-
-// FUNCTION TO DISPLAY COLOR ON THE ARTBOARD
-function displayArtBoard() {
-    setTimeout(() => {
-        menuH3.textContent = `Now paint the box below with the color ${colorArray[count].name}`
-
-        colorArray[count].audioNow.play()
-        menuArtBoard.classList.add("art-board")
-        artBoardCols.forEach((artBoardCol) => {
-            artBoardCol.addEventListener("touchstart", (e) => {
-                e.preventDefault()
-                artBoardCol.style.backgroundColor = colorArray[count].code
-                hoveredBox++;
-                // DISPLAY GOOD JOB WHEN HOVERED BOXES = 40
-                if (hoveredBox === 40) {
-                    goodJobAudio.play()
-                    menuGoodJob.textContent = "👍🏽GOOD JOB👍🏽"
-                    backBtn.disabled = false
-                    nextBtn.disabled = false
-                }
-            })
-        })
-    }, 18000)
-}
 
 // FUNCTION TO CLEAR THE BOARD FOR NEXT COLOR DISPLAY
 function clearArtBoard() {
@@ -180,12 +159,6 @@ function clearArtBoard() {
     menuArtBoard.classList.remove("art-board")
 }
 
-// FUNCTION TO ADD OR REMOVE MAIN COVER after 5 seconds
-// function mainCoverToggle() {
-//     setTimeout(()=>{
-//         mainSection.classList.toggle(".highZindex") // didnt work bcs o the . dot b4 highZindex
-//     }, 5000)
-// }
 
 // JUST NEXT AUTOMATICALLY
 
@@ -201,13 +174,6 @@ function nextColor() {
     }
 }
 
-// STOP AUDIO FROM PLAYING - didnt work for me
-// function stopPlayingAudio() {
-//     colorArray[count].audioThis.pause()
-//     colorArray[count].audioNow.pause()    
-//     colorArray[count].audioThis.currentTime = 0
-//     colorArray[count].audioNow.currentTime = 0 
-// }
 
 // CHANGE THE COLOR WITH BUTTONS BY CLEARING THE BOARD AND RERUN THE DISPLAYS 
 nextBtn.addEventListener("click", () => {
@@ -258,6 +224,70 @@ primaryColor.addEventListener("change", () => {
     displayColor()
     displayArtBoard()
 })
+
+// 🔉🔉🔉AUDIO ENGINE🔉🔉🔉
+
+//         soundBtn.addEventListener("click", () => {
+//     if (AudioContext.state === "suspended") {
+//         AudioContext.resume();
+//     }
+//     console.log(AudioContext)
+// })
+
+soundBtn.addEventListener("click", () => {
+    audioContext = new AudioContext()
+    console.log("Audio Context started")
+    // START GETTING THE AUDIO NOW AND PUT THEN IN samples[]
+    setupSamples(samplePathsThis).then((response) => {
+        samplesThis = response; // SOLUTION add the contect and destination to this
+        console.log(samplesThis)
+    })
+    setupSamples(samplePathsNow).then((response) => {
+        samplesNow = response; // SOLUTION add the contect and destination to this
+        console.log(samplesNow)
+    })
+    // displayColor() Uncaught TypeError: Cannot read properties of undefined (reading '0')
+    // displayArtBoard()
+})
+
+// playSampleBtn.addEventListener("click", () => {
+//     playSample(samplesThis[count])
+// })
+
+// playNextBtn.addEventListener("click", () => {
+//     playSample(samplesNow[count])
+// })
+
+
+async function setupSamples(paths) {
+    console.log("Getting the audios from server into buffer");
+    const audioBuffers = [];
+    for (const path of paths) {
+        const sample = await getFile(path);
+        audioBuffers.push(sample);
+    }
+    console.log("All audios gotten into buffer")
+    return audioBuffers;
+}
+
+async function getFile(filePath) {
+    const response = await fetch(filePath);
+    const arrayBuffer = await response.arrayBuffer();
+    const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+    return audioBuffer;
+}
+
+function playSample(audioBuffer) {
+    const sampleSource = audioContext.createBufferSource();
+    sampleSource.buffer = audioBuffer;
+    const gainNode = audioContext.createGain();
+    gainNode.gain.value = volume;
+    sampleSource.connect(gainNode).connect(audioContext.destination);
+    sampleSource.start(0);
+    return sampleSource
+}
+
+// 🔉🔉🔉AUDIO ENGINE🔉🔉🔉
 
 
 // mainCoverToggle()
@@ -315,3 +345,37 @@ primaryColor.addEventListener("change", () => {
 //             menuArtBoard.appendChild(rowDiv)
 //         };
 // }, 5000)
+// FUNCTION TO DISPLAY COLOR ON THE HEADER
+
+function displayColor() {
+    backBtn.disabled = true
+    nextBtn.disabled = true
+    colorText.textContent = `This is color ${colorArray[count].name}`
+    colorBox.style.backgroundColor = colorArray[count].code
+    // colorArray[count].audioThis.play()
+    playSample(samplesThis[count])
+}
+
+// FUNCTION TO DISPLAY COLOR ON THE ARTBOARD
+function displayArtBoard() {
+    setTimeout(() => {
+        menuH3.textContent = `Now paint the box below with the color ${colorArray[count].name}`
+        // colorArray[count].audioNow.play()
+        playSample(samplesNow[count])
+        menuArtBoard.classList.add("art-board")
+        artBoardCols.forEach((artBoardCol) => {
+            artBoardCol.addEventListener("touchstart", (e) => {
+                e.preventDefault()
+                artBoardCol.style.backgroundColor = colorArray[count].code
+                hoveredBox++;
+                // DISPLAY GOOD JOB WHEN HOVERED BOXES = 40
+                if (hoveredBox === 40) {
+                    goodJobAudio.play()
+                    menuGoodJob.textContent = "👍🏽GOOD JOB👍🏽"
+                    backBtn.disabled = false
+                    nextBtn.disabled = false
+                }
+            })
+        })
+    }, 15000)
+}
