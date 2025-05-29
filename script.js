@@ -157,6 +157,12 @@ const secondaryColor = document.querySelector("#secondary-color")
 soundPara = document.querySelector("#soundPara")
 beginPara = document.querySelector("#beginPara")
 
+const volumebtn = document.querySelector("#volumebtn")
+
+volumebtn.addEventListener("input", ()=>{
+volume = volumebtn.value
+})
+
 // FUNCTION TO CLEAR THE BOARD FOR NEXT COLOR DISPLAY
 function clearArtBoard() {
     artBoardCols.forEach((artBoardCol) => {
