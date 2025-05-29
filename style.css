@@ -99,11 +99,11 @@ header {
 }
 
 main {
-    height: 60vh;
+    height: 50vh;
     display: grid;
     justify-items: center;
-    gap: 5px;
-    padding: 20px 0;
+    gap: 1px;
+    padding: 10px 0;
 }
 
 #main-h3 {
