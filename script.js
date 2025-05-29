@@ -99,9 +99,6 @@ let audioContext;
 let samplesThis;
 let samplesNow;
 let volume = 2
-const startCtxBtn = document.querySelector("#allowSetup")
-const playSampleBtn = document.querySelector("#playSound")
-const playNextBtn = document.querySelector("#playNextSound")
 
 const samplePathsThis = [
     "audio/this-is-red.mp3",
@@ -243,7 +240,7 @@ soundBtn.addEventListener("click", () => {
         console.log(samplesThis)
     })
     setupSamples(samplePathsNow).then((response) => {
-        samplesNow = response; 
+        samplesNow = response;
         console.log(samplesNow)
     })
     soundPara.textContent = ""
@@ -251,10 +248,13 @@ soundBtn.addEventListener("click", () => {
 
 
 
-beginNow.addEventListener("click", ()=>{
-         displayColor()
-    displayArtBoard() 
+beginNow.addEventListener("click", () => {
     beginPara.textContent = ""
+    setTimeout(() => {
+        displayColor()
+        displayArtBoard()
+    }, 2500)
+
 })
 
 

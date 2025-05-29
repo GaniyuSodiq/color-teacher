@@ -1,10 +1,10 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root{
+:root {
 
     margin: 0;
     padding: 0;
@@ -16,13 +16,33 @@
 
 }
 
-.controlBox{
+.controlBox {
     display: grid;
-align-items: center;
-justify-items: center;    
+    align-items: center;
+    justify-content: center;
+
 }
 
-.container{
+#soundBtn, #begin, label{
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: lightskyblue;
+    border: none;
+    border-radius: 5px;
+}
+
+label{
+    font-size: .9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background-color: white;
+    border: 1px solid lightblue;
+}
+
+.container {
     margin: 0 30vw;
     border: 1px solid gray;
     height: 100vh;
@@ -35,33 +55,33 @@ fieldset {
     border: none;
     font-size: .7rem;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     gap: 3px;
 }
 
 
 
 @media only screen and (max-width : 800px) {
-    .container{
+    .container {
         border: 1px solid gray;
         margin: 0 5vw;
     }
 }
 
-@media only screen and (min-width : 801px) and (max-width : 1030px){
-    .container{
+@media only screen and (min-width : 801px) and (max-width : 1030px) {
+    .container {
         border: 1px solid gray;
         margin: 0 10vw;
     }
 }
 
-#lower-section{
+#lower-section {
     background-color: white;
     border-radius: 15px 15px 10px 10px;
     box-shadow: 0px -2px 15px 3px rgba(11, 0, 29, 0.148);
 }
 
-header{
+header {
     height: 30vh;
     text-align: center;
     padding: 20px;
@@ -71,14 +91,14 @@ header{
     align-items: center;
 }
 
-#color-box{
+#color-box {
     height: 70px;
     width: 150px;
     border: 1px solid grey;
     margin: 10px auto;
 }
 
-main{
+main {
     height: 60vh;
     display: grid;
     justify-items: center;
@@ -86,31 +106,32 @@ main{
     padding: 20px 0;
 }
 
-#main-h3{
+#main-h3 {
     text-align: center;
 }
 
-.art-board{
+.art-board {
     border: 1px solid grey;
     padding: 0.3px;
     /* display: inline-block; */
     margin: 0 auto;
 }
 
-.row{    
+.row {
     display: flex;
     border-color: green;
 }
-.col{
+
+.col {
     height: 30px;
     width: 50px;
     /* background-color: red; */
     margin: 0.5px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 
-header > button{
+header>button {
     padding: 10px;
     font-size: 1rem;
     align-self: stretch;
@@ -119,35 +140,35 @@ header > button{
     font-size: 1.5rem;
 }
 
-header > button:hover {
+header>button:hover {
     background-color: aliceblue;
 }
 
-#answer-box{
+#answer-box {
     display: flex;
     gap: 5px;
     justify-content: center;
     margin: 1px auto;
 }
 
-#answer-box button{
+#answer-box button {
     padding: 5px;
 }
 
-hr{
+hr {
     opacity: .3;
     width: 80%;
     text-align: center;
 }
 
-footer{
+footer {
     display: grid;
     justify-items: center;
     gap: 5px;
     padding-bottom: 5px;
 }
 
-.container a{
+.container a {
     text-decoration: none;
     text-align: center;
     font-size: .7rem;
@@ -155,14 +176,14 @@ footer{
     padding-bottom: 3px;
 }
 
-.container a:hover{
+.container a:hover {
     text-decoration: underline;
 }
 
-.container a:visited{
-    color:#3b3a3a
+.container a:visited {
+    color: #3b3a3a
 }
 
-#color-box{
+#color-box {
     background-color: red;
 }
