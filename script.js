@@ -364,7 +364,7 @@ function displayColor() {
 // FUNCTION TO DISPLAY COLOR ON THE ARTBOARD
 function displayArtBoard() {
     setTimeout(() => {
-        menuH3.textContent = `Now paint the box below with the color ${colorArray[count].name}`
+        menuH3.textContent = `Now paint the box below with the color ${colorArray[count].name}. Touch with your finger`
         // colorArray[count].audioNow.play()
         playSample(samplesNow[count])
         menuArtBoard.classList.add("art-board")
@@ -373,10 +373,10 @@ function displayArtBoard() {
                 e.preventDefault()
                 artBoardCol.style.backgroundColor = colorArray[count].code
                 hoveredBox++;
-                // DISPLAY GOOD JOB WHEN HOVERED BOXES = 40
-                if (hoveredBox === 40) {
+                // DISPLAY GOOD JOB WHEN HOVERED BOXES = 10
+                if (hoveredBox === 10) {
                     goodJobAudio.play()
-                    menuGoodJob.textContent = "👍🏽GOOD JOB👍🏽"
+                    menuGoodJob.textContent = "👍🏽GOOD JOB👍🏽Press 👈🏾 or 👉🏾 to see the other colors"
                     backBtn.disabled = false
                     nextBtn.disabled = false
                 }
