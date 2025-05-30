@@ -259,7 +259,7 @@ beginNow.addEventListener("click", () => {
     setTimeout(() => {
         displayColor()
         displayArtBoard()
-    }, 2500)
+    }, 1000)
 
 })
 
