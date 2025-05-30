@@ -149,6 +149,7 @@ nextBtn.disabled = true
 
 const soundBtn = document.querySelector("#soundBtn");
 const beginNow = document.querySelector("#begin")
+beginNow.disabled = true
 
 // PICK THE BUTTONS ON COLOR TYPES
 const primaryColor = document.querySelector("#primary-color")
@@ -251,6 +252,9 @@ soundBtn.addEventListener("click", () => {
         console.log(samplesNow)
     })
     soundPara.textContent = ""
+    setTimeout(()=>{
+        beginNow.disabled = false
+    }, 3000)
 })
 
 
