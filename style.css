@@ -89,6 +89,7 @@ fieldset {
     border-radius: 15px 15px 10px 10px;
     box-shadow: 0px -2px 15px 3px rgba(11, 0, 29, 0.148);
     height: 35vh;
+    align-items: end;
 }
 
 header {
@@ -134,8 +135,8 @@ main {
 }
 
 .col {
-    height: 30px;
-    width: 50px;
+    height: 20px;
+    width: 25px;
     /* background-color: red; */
     margin: 0.5px;
     cursor: pointer;
