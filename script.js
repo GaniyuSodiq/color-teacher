@@ -251,10 +251,17 @@ soundBtn.addEventListener("click", () => {
         samplesNow = response;
         console.log(samplesNow)
     })
-    soundPara.textContent = ""
+    soundPara.textContent = "LOADING..."
+    // let timer = [1,2,3,4,5]
+    // timer.forEach((num)=>{
+    //    setTimeout(() => {
+    //     soundPara.textContent = num 
+    //    }, 1000);
+    // })
     setTimeout(()=>{
+        soundPara.textContent = ""
         beginNow.disabled = false
-    }, 3000)
+    }, 5000)
 })
 
 
