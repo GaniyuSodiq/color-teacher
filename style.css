@@ -33,6 +33,11 @@
     text-align: center;
 }
 
+.msg{
+    padding: 5px;
+    font-size: 1rem;
+}
+
 label{
     font-size: .9rem;
     display: flex;
@@ -44,13 +49,11 @@ label{
 }
 
 .container {
-    
-    margin-top: 10px;
-    margin-bottom: 10px;
-
     margin: 0 30vw;
-    border: 1px solid gray;
-    height: 90vh;
+    border-top: 1px solid gray;
+    border-right: 1px solid gray;
+    border-left: 1px solid gray;
+    height: 95vh;
     border-radius: 5px;
     display: grid;
     padding: 10px;
