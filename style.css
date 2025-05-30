@@ -29,6 +29,10 @@
     border-radius: 5px;
 }
 
+.centered-text{
+    text-align: center;
+}
+
 label{
     font-size: .9rem;
     display: flex;
