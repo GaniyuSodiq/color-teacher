@@ -156,6 +156,7 @@ const secondaryColor = document.querySelector("#secondary-color")
 
 soundPara = document.querySelector("#soundPara")
 beginPara = document.querySelector("#beginPara")
+msgPara = document.querySelector(".msg")
 
 const volumebtn = document.querySelector("#volumebtn")
 
@@ -256,6 +257,7 @@ soundBtn.addEventListener("click", () => {
 
 beginNow.addEventListener("click", () => {
     beginPara.textContent = ""
+    msgPara.textContent = ""
     setTimeout(() => {
         displayColor()
         displayArtBoard()
@@ -376,7 +378,7 @@ function displayArtBoard() {
                 // DISPLAY GOOD JOB WHEN HOVERED BOXES = 10
                 if (hoveredBox === 10) {
                     goodJobAudio.play()
-                    menuGoodJob.textContent = "👍🏽GOOD JOB👍🏽Press 👈🏾 or 👉🏾 to see the other colors"
+                    menuGoodJob.textContent = `Good Job! ~ Press 👈🏾 or 👉🏾 to see the other colors ~`
                     backBtn.disabled = false
                     nextBtn.disabled = false
                 }
